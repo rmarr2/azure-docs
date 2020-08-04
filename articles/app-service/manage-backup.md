@@ -44,6 +44,10 @@ The following database solutions are supported with backup feature:
 * Backups of TLS enabled Azure Database for PostgreSQL is not supported. If a backup is configured, you will get failed backups.
 * In-app MySQL databases are automatically backed up without any configuration. If you make manually settings for in-app MySQL databases, such as adding connection strings, the backups may not work correctly.
 * Using a firewall enabled storage account as the destination for your backups is not supported. If a backup is configured, you will get failed backups.
+* Backups of SQL require that the user in the connection string have permissions to the master database. This can be either the database administrator or a separate login used for taking backups. Refer to (https://docs.microsoft.com/en-us/azure/sql-database/sql-database-manage-logins) for more information about SQL Azure logins and users. If a separate login is used then make sure to:
+			  a) Create a user for that login in the master db with the permission “dbmanager”
+			  b) Create a user for that login in the source db with the permission “db_owner”
+
 
 
 <a name="manualbackup"></a>
